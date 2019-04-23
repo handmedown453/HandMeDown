@@ -58,10 +58,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (ContextCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
                     String user = userid.getText().toString();
-                    String pass = password.getText().toString();
+                    String pass  = password.getText().toString();
                     if (user.isEmpty() || pass.isEmpty()) {
                         showMessage("please enter valid Email and password");
                     }
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
-            }
+
 
 
         });
