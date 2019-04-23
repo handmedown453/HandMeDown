@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1037136956498",
+    "firebase_url": "https://hand-me-down-1587f.firebaseio.com",
+    "project_id": "hand-me-down-1587f",
+    "storage_bucket": "hand-me-down-1587f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037136956498:android:55b178e903845777",
+        "android_client_info": {
+          "package_name": "android.project.handmedown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037136956498-4ea21jkgd6e7749mh714qmsg4fspvjr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD99YgIr107f_J102WoGsYbsWhyD1EvVd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037136956498-4ea21jkgd6e7749mh714qmsg4fspvjr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
