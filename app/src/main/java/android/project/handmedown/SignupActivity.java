@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +26,8 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mauth;
     int number = 0;
     boolean a;
+    private DatabaseReference reff;
+    newuser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
                 final String lastname = Lastname.getText().toString();
 
                 final String email = Email.getText().toString();
-                String age = Age.getText().toString();
+                final String age = Age.getText().toString();
                 final String password = Password.getText().toString();
                 final String confirmPassword = ConfirmPassword.getText().toString();
                 try {
@@ -90,7 +95,15 @@ public class SignupActivity extends AppCompatActivity {
                     ConfirmPassword.setText("");
                     showMessage("please enter both password same");
                 } else {
+                    user = new newuser();
                     mauth = FirebaseAuth.getInstance();
+                    reff = FirebaseDatabase.getInstance().getReference().child("users");
+                    user.setFirstname(Firstname.getText().toString());
+                    user.setLastname(Lastname.getText().toString());
+                    user.setAge(Integer.parseInt(Age.getText().toString()));
+                    user.setEmail(Email.getText().toString());
+                    user.setPassword(Password.getText().toString());
+                    reff.push().setValue(user);
                     mauth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    String user = userid.getText().toString();
+                    final String user = userid.getText().toString();
                     String pass  = password.getText().toString();
                     if (user.isEmpty() || pass.isEmpty()) {
                         showMessage("please enter valid Email and password");
@@ -71,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
-                                            showMessage("Cool");
+                                            User user1 =new User(MainActivity.this);
+                                            user1.setName(user);
+                                            Intent i = new Intent(MainActivity.this, FirstActivity.class);
+                                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                            i.putExtra("user",user);
+                                            startActivity(i);
+
                                         } else {
                                             showMessage("faild signInWithEmailAndPassword");
                                         }
