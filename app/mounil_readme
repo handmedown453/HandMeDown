@@ -1,0 +1,5 @@
+Changes made
+1. Added internet permissions in manifest
+2. Added implementation "design" in gradle module:app
+3. Added in res->values
+4. Added Navigation Bar Backgroung image
