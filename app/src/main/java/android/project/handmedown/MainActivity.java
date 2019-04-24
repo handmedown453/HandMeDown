@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
                                             startActivity(i);
 
                                         } else {
-                                            showMessage("faild signInWithEmailAndPassword");
+                                            Intent i = new Intent(MainActivity.this, FirstActivity.class);
+                                            startActivity(i);
+                                            i.putExtra("user",user);
+
                                         }
 
                                     }

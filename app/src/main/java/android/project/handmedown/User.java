@@ -9,7 +9,7 @@ public class User {
     SharedPreferences sharedPreferences;
 
     private String name;
-
+    private String email;
 
 
     public  User(Context context)
@@ -23,12 +23,22 @@ public class User {
         sharedPreferences.edit().clear().commit();
     }
     public String getName() {
-        sharedPreferences.getString("userdata","");
+        sharedPreferences.getString("username","");
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-        sharedPreferences.edit().putString("userdata",name).commit();
+        sharedPreferences.edit().putString("username",name).commit();
+    }
+
+    public String getEmail() {
+        sharedPreferences.getString("useremail","");
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+        sharedPreferences.edit().putString("useremail",email).commit();
     }
 }
