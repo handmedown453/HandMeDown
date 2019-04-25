@@ -1,7 +1,7 @@
 package android.project.handmedown.Signup;
 
 import android.content.Intent;
-import android.project.handmedown.Signin.loginActivity;
+import android.project.handmedown.Signin.LoginActivity;
 import android.project.handmedown.R;
 import android.project.handmedown.userdetails.User;
 import android.support.annotation.NonNull;
@@ -74,7 +74,7 @@ public class SignupActivity extends AppCompatActivity {
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(View V) {
-                Intent i = new Intent(SignupActivity.this, loginActivity.class);
+                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         };
@@ -89,7 +89,7 @@ public class SignupActivity extends AppCompatActivity {
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View V) {
-                Intent i = new Intent(SignupActivity.this, loginActivity.class);
+                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         };
@@ -107,7 +107,7 @@ public class SignupActivity extends AppCompatActivity {
         ClickableSpan clickableSpan3 = new ClickableSpan() {
             @Override
             public void onClick(View V) {
-                Intent i = new Intent(SignupActivity.this, loginActivity.class);
+                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         };
@@ -177,7 +177,7 @@ public class SignupActivity extends AppCompatActivity {
                                 user.setEmail(Email.getText().toString());
                                 user.setPassword(Password.getText().toString());
                                 reff.setValue(user);
-                                Intent i = new Intent(SignupActivity.this, loginActivity.class);
+                                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
                                 startActivity(i);
                             } else {
                                 showMessage(task.getException().getMessage());

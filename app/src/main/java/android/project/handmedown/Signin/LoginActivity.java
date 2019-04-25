@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class loginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText userid, password;
     private Button Login;
     private FirebaseAuth mauth;
@@ -45,7 +45,7 @@ public class loginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(View V) {
-                Intent i = new Intent(loginActivity.this, SignupActivity.class);
+                Intent i = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(i);
             }
         };
@@ -63,7 +63,7 @@ public class loginActivity extends AppCompatActivity {
         ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View V) {
-                Intent i = new Intent(loginActivity.this, ForgetPasswordActivity.class);
+                Intent i = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(i);
             }
         };
@@ -89,12 +89,12 @@ public class loginActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
-                                           Intent i = new Intent(loginActivity.this, FirstActivity.class);
+                                           Intent i = new Intent(LoginActivity.this, FirstActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                              startActivity(i);
 
                                         } else {
-                                            Intent i = new Intent(loginActivity.this, FirstActivity.class);
+                                            Intent i = new Intent(LoginActivity.this, FirstActivity.class);
                                             startActivity(i);
 
 

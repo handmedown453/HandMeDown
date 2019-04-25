@@ -1,7 +1,7 @@
 package android.project.handmedown;
 
 import android.content.Intent;
-import android.project.handmedown.Signin.loginActivity;
+import android.project.handmedown.Signin.LoginActivity;
 import android.project.handmedown.userdetails.User;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +56,7 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.getInstance().signOut();
-                Intent i = new Intent( FirstActivity.this, loginActivity.class);
+                Intent i = new Intent( FirstActivity.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);

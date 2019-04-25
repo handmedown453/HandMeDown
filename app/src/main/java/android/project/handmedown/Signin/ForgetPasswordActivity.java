@@ -48,7 +48,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     showMessage("Check your email for instructions");
-                                    Intent i = new Intent(ForgetPasswordActivity.this, loginActivity.class);
+                                    Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                                     startActivity(i);
                                 } else {
                                     showMessage(task.getException().getMessage());
