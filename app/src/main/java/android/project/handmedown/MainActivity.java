@@ -71,17 +71,14 @@ public class MainActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
-                                            User user1 =new User(MainActivity.this);
-                                            user1.setName(user);
-                                            Intent i = new Intent(MainActivity.this, FirstActivity.class);
+                                           Intent i = new Intent(MainActivity.this, FirstActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                            i.putExtra("user",user);
-                                            startActivity(i);
+                                             startActivity(i);
 
                                         } else {
                                             Intent i = new Intent(MainActivity.this, FirstActivity.class);
                                             startActivity(i);
-                                            i.putExtra("user",user);
+
 
                                         }
 

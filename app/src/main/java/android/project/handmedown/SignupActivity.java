@@ -97,19 +97,21 @@ public class SignupActivity extends AppCompatActivity {
                 } else {
                     user = new newuser();
                     mauth = FirebaseAuth.getInstance();
-                    reff = FirebaseDatabase.getInstance().getReference().child("users");
-                    user.setFirstname(Firstname.getText().toString());
-                    user.setLastname(Lastname.getText().toString());
-                    user.setAge(Integer.parseInt(Age.getText().toString()));
-                    user.setEmail(Email.getText().toString());
-                    user.setPassword(Password.getText().toString());
-                    reff.push().setValue(user);
+
                     mauth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
+
                                 showMessage("Sucessful Signup");
+                                reff = FirebaseDatabase.getInstance().getReference(mauth.getUid());
+                                user.setFirstname(Firstname.getText().toString());
+                                user.setLastname(Lastname.getText().toString());
+                                user.setAge(Integer.parseInt(Age.getText().toString()));
+                                user.setEmail(Email.getText().toString());
+                                user.setPassword(Password.getText().toString());
+                                reff.setValue(user);
                                 Intent i = new Intent(SignupActivity.this, MainActivity.class);
                                 startActivity(i);
                             } else {
