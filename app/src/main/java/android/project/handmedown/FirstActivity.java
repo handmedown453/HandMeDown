@@ -1,6 +1,8 @@
 package android.project.handmedown;
 
 import android.content.Intent;
+import android.project.handmedown.Signin.loginActivity;
+import android.project.handmedown.userdetails.User;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +16,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class FirstActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class FirstActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                newuser user1 =dataSnapshot.getValue(newuser.class);
+                User user1 =dataSnapshot.getValue(User.class);
                 t1.setText(user1.getEmail());
                t2.setText(user1.getFirstname());
             }
@@ -55,7 +56,7 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.getInstance().signOut();
-                Intent i = new Intent( FirstActivity.this,MainActivity.class);
+                Intent i = new Intent( FirstActivity.this, loginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);

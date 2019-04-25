@@ -1,7 +1,8 @@
 <resources>
+    <!--shyam-->
     <string name="app_name">HandMeDown</string>
     <string name="email">Email</string>
-    <string name="login">Login</string>
+    <string name="login">Login now</string>
     <string name="not_a_member_yet_signup_now">not a member yet signup now</string>
     <string name="password">password</string>
     <string name="first_name">First name</string>
@@ -9,5 +10,15 @@
     <string name="age">Age</string>
     <string name="confirm_password">Confirm_password</string>
     <string name="cancel">cancel</string>
-    <string name="signup">Signup</string>
+    <string name="signup">Join now</string>
+    <string name="phone_number">phone number</string>
+    <string name="already_a_member_sign_in">Already a member? Sign in!</string>
+    <string name="Terms">By joining I agree to HandMeDown\'s terms and Conditions,privacy Policy and end user licence agreement. I also consent to receive marketing emails from HandmeDown which I can opt out of at the bottom of each email.</string>
+    <string name="i_agree_terms_of_services">I agree terms of services</string>
+    <string name="having_a_problem_contact_us">Having a problem? Contact us</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="login_with_gmail">Login with Gmail</string>
+    <string name="forgotten_password">Forgotten Password?</string>
+    <string name="no_problem_just_let_us_know_the_email_address_you_use_with_handmedown_and_we_will_send_you_instruction_to_set_a_new_password">No Problem. Just let us know the email address you use with HandMeDown and we will send you Instruction to set a new Password.</string>
+    <string name="send_me_instructions">Send Me Instructions</string>
 </resources>

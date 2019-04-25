@@ -1,21 +1,21 @@
-package android.project.handmedown;
+package android.project.handmedown.userdetails;
 
-public class newuser {
+public class User {
 
    private String Firstname,Lastname,Email,password;
-   private int Age;
+   private int Phone;
 
 
-    public  newuser(){
+    public User(){
 
     }
 
-    public int getAge() {
-        return Age;
+    public int getPhone() {
+        return Phone;
     }
 
-    public void setAge(int age) {
-        Age = age;
+    public void setPhone(int age) {
+        Phone = age;
     }
 
     public String getPassword() {

@@ -1,6 +1,7 @@
 package android.project.handmedown;
 
 import android.content.Intent;
+import android.project.handmedown.userdetails.User;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                newuser user1 =dataSnapshot.getValue(newuser.class);
+                User user1 =dataSnapshot.getValue(User.class);
                 t1.setText(user1.getEmail());
                 t2.setText(user1.getFirstname());
             }

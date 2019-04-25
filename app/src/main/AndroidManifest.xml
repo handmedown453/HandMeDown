@@ -10,13 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Signin.ForgetPasswordActivity" />
         <activity android:name=".SecondActivity" />
-        <activity android:name=".FirstActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignupActivity" />
         <activity
-            android:name=".MainActivity"
-            android:noHistory="true"
+            android:name=".FirstActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Signup.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Signin.loginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
