@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/view_donations"
+            android:icon="@drawable/view_donations"
+            android:title="@string/view_donations" />
+        <item
+            android:id="@+id/your_listing"
+            android:icon="@drawable/your_listing"
+            android:title="@string/view_donations" />
+        <item
+            android:id="@+id/faqs"
+            android:icon="@drawable/faqs"
+            android:title="@string/faqs" />
+        <item
+            android:id="@+id/terms_and_conditions"
+            android:icon="@drawable/term_and_conditions"
+            android:title="@string/termsandconditions" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/feedback"
+                android:icon="@drawable/feedback"
+                android:title="@string/feedback" />
+            <item
+                android:id="@+id/about_us"
+                android:icon="@drawable/about_us"
+                android:title="@string/aboutus" />
+
+            <item
+                android:id="@+id/sign_out"
+                android:icon="@drawable/sign_out"
+                android:title="@string/signout" />
+        </menu>
+    </item>
+
+</menu>
