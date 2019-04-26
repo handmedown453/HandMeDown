@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">HandMeDown</string>
+
+    <!--Mounil-->
+    <string name="your_listing">Your Listing</string>
+    <string name="faqs">FAQ\'s</string>
+    <string name="termsandconditions">Terms &amp; Conditions</string>
+    <string name="feedback">Feedback</string>
+    <string name="aboutus">About Us</string>
+    <string name="signout">Sign Out?</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_navigation_bar">NavigationBarActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Mounil Shah</string>
+    <string name="nav_header_subtitle">mounil3196@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="view_donations">View Donations</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+
 </resources>
