@@ -14,7 +14,7 @@
             android:title="@string/view_donations" />
         <item
             android:id="@+id/faqs"
-            android:icon="@drawable/faqs"
+            android:icon="@drawable/navvigation_drawer_faqs"
             android:title="@string/faqs" />
         <item
             android:id="@+id/terms_and_conditions"
@@ -26,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/feedback"
-                android:icon="@drawable/feedback"
+                android:icon="@drawable/navvigation_drawer_feedback"
                 android:title="@string/feedback" />
             <item
                 android:id="@+id/about_us"
-                android:icon="@drawable/about_us"
+                android:icon="@drawable/navvigation_drawer_about_us"
                 android:title="@string/aboutus" />
 
             <item
