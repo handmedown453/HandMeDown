@@ -93,9 +93,10 @@ public class LoginActivity extends AppCompatActivity {
                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                              startActivity(i);
 
+
+
                                         } else {
-                                            Intent i = new Intent(LoginActivity.this, FirstActivity.class);
-                                            startActivity(i);
+
 
 
                                         }

@@ -18,31 +18,36 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class FirstActivity extends AppCompatActivity {
-    TextView t1,t2;
-    Button B1,B2,B3;
+    TextView t1, t2;
+    Button B1, B2, B3;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference reff;
     private ValueEventListener queryListener;
+    private static final String TAG = "FirstActivity";
+
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-        t1=findViewById(R.id.textView);
-        t2=findViewById(R.id.textView2);
-        firebaseAuth=firebaseAuth.getInstance();
-        firebaseUser=firebaseAuth.getCurrentUser();
+        t1 = findViewById(R.id.textView);
+        t2 = findViewById(R.id.textView2);
+        firebaseAuth = firebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
-            reff = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid());
+        reff = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid());
 
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user1 =dataSnapshot.getValue(User.class);
+                User user1 = dataSnapshot.getValue(User.class);
                 t1.setText(user1.getEmail());
-               t2.setText(user1.getFirstname());
+                t2.setText(user1.getFirstname());
             }
 
             @Override
@@ -51,26 +56,34 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
-    B1=findViewById(R.id.button1);
+        B1 = findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 firebaseAuth.getInstance().signOut();
-                Intent i = new Intent( FirstActivity.this, LoginActivity.class);
+                Intent i = new Intent(FirstActivity.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
         });
-        B2=findViewById(R.id.button2);
+        B2 = findViewById(R.id.button2);
+       init();
+        }
+
+
+    private void init(){
+
         B2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent( FirstActivity.this,SecondActivity.class);
+            public void onClick(View view) {
+                Intent i = new Intent(FirstActivity.this, MapsActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
 
             }
         });
-
     }
+
 }

@@ -1,7 +1,9 @@
-package android.project.handmedown;
+package android.project.handmedown.Splash_Screen;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.project.handmedown.FirstActivity;
+import android.project.handmedown.R;
 import android.project.handmedown.Signin.LoginActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser firebaseUser= firebaseAuth.getCurrentUser();
                 if(firebaseUser!= null){
 
-                    Intent i=new Intent(MainActivity.this,FirstActivity.class);
+                    Intent i=new Intent(MainActivity.this, FirstActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
 

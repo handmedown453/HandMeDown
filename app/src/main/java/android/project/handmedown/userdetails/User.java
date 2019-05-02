@@ -2,12 +2,28 @@ package android.project.handmedown.userdetails;
 
 public class User {
 
-   private String Firstname,Lastname,Email,password;
+   private String Firstname,Lastname,Email,password,lAT,lOG;
    private int Phone;
 
 
     public User(){
 
+    }
+
+    public String getlAT() {
+        return lAT;
+    }
+
+    public void setlAT(String lAT) {
+        this.lAT = lAT;
+    }
+
+    public String getlOG() {
+        return lOG;
+    }
+
+    public void setlOG(String lOG) {
+        this.lOG = lOG;
     }
 
     public int getPhone() {
