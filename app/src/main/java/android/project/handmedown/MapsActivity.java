@@ -75,8 +75,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        /*initplaces();
-        setupPlaceAutoCompete();*/
+        initplaces();
+        setupPlaceAutoCompete();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -102,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-   /* private void setupPlaceAutoCompete() {
+    private void setupPlaceAutoCompete() {
         places_fragment = (AutocompleteSupportFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.place_autocomplete);
         places_fragment.setPlaceFields(placeFileds);
@@ -126,7 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Places.initialize(this,getString(R.string.google_api_key));
         placesClient =Places.createClient(this);
 
-    }*/
+    }
 
 
     public void onMapReady(GoogleMap googleMap) {
@@ -137,7 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnCameraIdleListener(this);
         /* mMap.setOnCameraMoveStartedListener(this);*/
         mMap.setOnCameraMoveListener(this);
-        /* mMap.setOnCameraMoveCanceledListener(this);*/
+         /*mMap.setOnCameraMoveCanceledListener(this);*/
         getDeviceLocation();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)

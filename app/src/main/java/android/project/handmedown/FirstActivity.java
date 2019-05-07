@@ -46,8 +46,13 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user1 = dataSnapshot.getValue(User.class);
-                t1.setText(user1.getEmail());
-                t2.setText(user1.getFirstname());
+                if(user1.getEmail()!=null) {
+                    t1.setText(user1.getEmail());
+                    t2.setText(user1.getFirstname());
+                }
+                else{
+                   // start login screen
+                }
             }
 
             @Override
