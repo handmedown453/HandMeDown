@@ -24,11 +24,11 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
+        android:weightSum="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView4"
-        android:weightSum="10">
+        app:layout_constraintTop_toBottomOf="@id/textView4">
 
         <ImageView
             android:id="@+id/listing_image_preview"
@@ -46,9 +46,9 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="@string/title_field_hint"
             android:importantForAutofill="no"
+            android:inputType="textPersonName"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -59,9 +59,9 @@
             android:layout_weight="2"
             android:ems="10"
             android:gravity="start|top"
-            android:inputType="textMultiLine"
             android:hint="@string/description_field_hint"
             android:importantForAutofill="no"
+            android:inputType="textMultiLine"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -71,9 +71,9 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="time"
             android:hint="@string/pickup_time_field_hint"
             android:importantForAutofill="no"
+            android:inputType="time"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -83,19 +83,19 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"
             android:hint="@string/list_duration_field_hint"
             android:importantForAutofill="no"
+            android:inputType="number"
             tools:ignore="UnusedAttribute" />
 
         <Button
             android:id="@+id/btn_choose_location"
+            style="@style/AccentButtonInverted"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="@string/pickup_location_field_hint"
-            style="@style/AccentButtonInverted"/>
+            android:text="@string/pickup_location_field_hint" />
 
         <Button
             android:id="@+id/btn_submit"
