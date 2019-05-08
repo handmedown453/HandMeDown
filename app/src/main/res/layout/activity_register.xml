@@ -56,7 +56,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/txt_first_name_hint"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:autofillHints="first_name"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/txt_last_name"
@@ -65,7 +67,9 @@
                     android:layout_marginTop="12dp"
                     android:ems="10"
                     android:hint="@string/txt_last_name_hint"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:autofillHints="last_name"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/txt_email"
@@ -74,7 +78,9 @@
                     android:layout_marginTop="12dp"
                     android:ems="10"
                     android:hint="@string/txt_email_address_hint"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:autofillHints="email"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/txt_password"
@@ -83,7 +89,9 @@
                     android:layout_marginTop="12dp"
                     android:ems="10"
                     android:hint="@string/password_field_hint"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:importantForAutofill="no"
+                    tools:ignore="UnusedAttribute" />
 
                 <EditText
                     android:id="@+id/txt_password_conf"
@@ -92,7 +100,9 @@
                     android:layout_marginTop="12dp"
                     android:ems="10"
                     android:hint="@string/txt_confirm_password_hint"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:importantForAutofill="no"
+                    tools:ignore="UnusedAttribute" />
 
                 <Button
                     android:id="@+id/btn_register"
