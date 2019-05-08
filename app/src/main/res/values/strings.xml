@@ -15,4 +15,7 @@
     <string name="btn_send_text">Send</string>
     <string name="btn_set_home_text">Set Home Location</string>
     <string name="btn_choose_location_text">Choose your location</string>
+    <string name="btn_home_description">Home button</string>
+    <string name="btn_profile_description">Profile button</string>
+    <string name="list_item_image_description">List item preview image</string>
 </resources>

@@ -19,6 +19,25 @@
         <item name="android:textSize">24sp</item>
         <item name="android:padding">16dp</item>
         <item name="android:gravity">center</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+
+    <style name="IconButton" parent="@style/Widget.AppCompat.ImageButton">
+        <item name="android:background">#00FFFF00</item>
+    </style>
+
+    <style name="ListItem">
+        <item name="android:elevation">1dp</item>
+    </style>
+
+    <style name="ListItemLabel" parent="@android:style/Widget.Material.Light.TextView">
+        <item name="android:background">#00000000</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
