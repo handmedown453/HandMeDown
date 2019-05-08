@@ -26,4 +26,10 @@
     <string name="btn_submit_text">Submit</string>
     <string name="listing_image_preview_description">Listing image preview</string>
     <string name="activity_add_listing_title">Add listing</string>
+    <string name="activity_donation_requests_title">Donation Requests</string>
+    <string name="btn_accept_text">Accept</string>
+    <string name="btn_reject_text">Reject</string>
+    <string name="txt_placeholder">Loading</string>
+    <string name="donation_user_name_placeholder">Offered by</string>
+    <string name="donation_distance_placeholder">0m</string>
 </resources>
