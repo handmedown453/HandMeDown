@@ -11,4 +11,6 @@
     <string name="txt_last_name_hint">Last Name</string>
     <string name="txt_email_address_hint">Email address</string>
     <string name="txt_confirm_password_hint">Confirm Password</string>
+    <string name="password_reset_instructions">Enter your email address. We will send a link to reset your password.</string>
+    <string name="btn_send_text">Send</string>
 </resources>
