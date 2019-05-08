@@ -18,4 +18,12 @@
     <string name="btn_home_description">Home button</string>
     <string name="btn_profile_description">Profile button</string>
     <string name="list_item_image_description">List item preview image</string>
+    <string name="title_field_hint">Title</string>
+    <string name="description_field_hint">Description</string>
+    <string name="pickup_time_field_hint">Pick up times</string>
+    <string name="list_duration_field_hint">List for</string>
+    <string name="pickup_location_field_hint">Set pickup location</string>
+    <string name="btn_submit_text">Submit</string>
+    <string name="listing_image_preview_description">Listing image preview</string>
+    <string name="activity_add_listing_title">Add listing</string>
 </resources>
