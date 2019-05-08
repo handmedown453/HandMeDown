@@ -13,4 +13,6 @@
     <string name="txt_confirm_password_hint">Confirm Password</string>
     <string name="password_reset_instructions">Enter your email address. We will send a link to reset your password.</string>
     <string name="btn_send_text">Send</string>
+    <string name="btn_set_home_text">Set Home Location</string>
+    <string name="btn_choose_location_text">Choose your location</string>
 </resources>
