@@ -6,5 +6,9 @@
     <string name="btn_forgot_password_text">Forgot Password?</string>
     <string name="btn_login_text">Login</string>
     <string name="text_no_account">Don\'t have an account?</string>
-    <string name="btn_register_text">Create</string>
+    <string name="btn_register_text">Register</string>
+    <string name="txt_first_name_hint">First Name</string>
+    <string name="txt_last_name_hint">Last Name</string>
+    <string name="txt_email_address_hint">Email address</string>
+    <string name="txt_confirm_password_hint">Confirm Password</string>
 </resources>
