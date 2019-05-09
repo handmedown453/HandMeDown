@@ -32,4 +32,6 @@
     <string name="txt_placeholder">Loading</string>
     <string name="donation_user_name_placeholder">Offered by</string>
     <string name="donation_distance_placeholder">0m</string>
+    <string name="placeholder_loading">Loading</string>
+    <string name="btn_request_listing_text">Request Listing</string>
 </resources>
