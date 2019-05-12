@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,15 +47,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnCameraMoveListener,
         GoogleMap.OnCameraIdleListener,
         GoogleMap.OnCameraMoveCanceledListener {
+    Geocoder geocoder;
     private GoogleMap mMap;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -60,15 +67,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected LocationManager locationManager;
     private static final String TAG = "MainActivity";
     protected LocationListener locationListener;
-    String lat,log;
+    String lat,log,city;
+    double lat1,log1;
+
     User user;
     Button Select_location;
     private FusedLocationProviderClient mFusedLocationProviderClient;
-    ;
+
     PlacesClient placesClient;
     List<Place.Field> placeFileds = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS);
     AutocompleteSupportFragment places_fragment;
     Marker mCenterMarker;
+    LatLng My_location1;
+    LatLng My_location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,17 +94,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Select_location = findViewById(R.id.Maps_Selectlocation_button);
 
+
+
+
+
         Select_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("TAG",city);
+
                 user =new User();
                 firebaseAuth = firebaseAuth.getInstance();
                 firebaseUser = firebaseAuth.getCurrentUser();
                 reff = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid());
-                user.setlAT(lat);
-                user.setlOG(log);
+                user.setCity(city);
+                user.setLat(lat);
+                user.setLog(log);
                 reff.child("lat").setValue(lat);
-                reff.child("long").setValue(log);
+                reff.child("log").setValue(log);
+                reff.child("city").setValue(city);
                 Intent i = new Intent(MapsActivity.this, SecondActivity.class);
                 startActivity(i);
             }
@@ -110,7 +130,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onPlaceSelected(@NonNull Place place) {
 
+
+               /* city=place.getName();*/
+                Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+                try {
+                    List<Address> addresses = geocoder.getFromLocationName(place.getName(), 1);
+                    String address = addresses.get(0).getAddressLine(0);
+                     lat1 = addresses.get(0).getLatitude();
+                     log1 =addresses.get(0).getLongitude();
+                    city = addresses.get(0).getLocality();
+                    Log.d("mylog", "Complete Address: " + addresses.toString());
+                    Log.d("mylog", "Address: " + address);
+                    } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (mCenterMarker != null) {
+                    mCenterMarker.remove();
+                }
+                My_location = new LatLng(lat1,log1);
+                mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).title("my location").draggable(true));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(My_location));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
+
+
+
+
                 Toast.makeText(MapsActivity.this, "" + place.getName(), Toast.LENGTH_SHORT).show();
+
+
+
             }
 
             @Override
@@ -123,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     private void initplaces() {
-        Places.initialize(this,getString(R.string.google_api_key));
+        Places.initialize(this,getString(R.string.google_maps_key));
         placesClient =Places.createClient(this);
 
     }
@@ -163,14 +211,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (task.isSuccessful()) {
                         Log.d(TAG, "onComplete: found location!");
                         Location currentLocation = (Location) task.getResult();
-                        LatLng My_location = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+
+                         My_location = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                         mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).title("my location").draggable(true));
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(My_location));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
                         lat = String.valueOf(currentLocation.getLatitude());
                         log= String.valueOf(currentLocation.getLongitude());
+                        }
+                    else{
+                        LatLng My_location = new LatLng(0.5f, .05f);
+                        mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).title("my location").draggable(true));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(My_location));
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
+                        }
 
 
-                    }
+
                 }
             });
 
@@ -182,12 +239,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onCameraIdle() {
 
+
         CameraPosition test1 = mMap.getCameraPosition();
         //Assign mCenterMarker reference:
-         new MarkerOptions().position(mMap.getCameraPosition().target).anchor(0.5f, .05f).title("Test1");
+         /*new MarkerOptions().position(mMap.getCameraPosition().target).anchor(0.5f, .05f).title("Test1");*/
 
         lat = String.valueOf(test1.target.latitude);
-        log= String.valueOf(test1.target.latitude);
+        log= String.valueOf(test1.target.longitude);
+
+         My_location1 = new LatLng(test1.target.latitude,test1.target.longitude);
+        getCityName(My_location1);
         Log.d(TAG, "Map Coordinate1: " + lat+"  "+log);
 
     }
@@ -228,8 +289,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "The app moved the camera.",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+    private void getCityName(LatLng myCoordinates) {
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(myCoordinates.latitude, myCoordinates.longitude, 1);
+            String address = addresses.get(0).getAddressLine(0);
+            Double lat = addresses.get(0).getLatitude();
+            Double log =addresses.get(0).getLatitude();
+            city = addresses.get(0).getLocality();
+            Log.d("mylog", "Complete Address: " + addresses.toString());
+            Log.d("mylog", "Address: " + address);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
-
 
 }

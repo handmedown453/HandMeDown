@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 FirebaseAuth firebaseAuth= FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser= firebaseAuth.getCurrentUser();
-                if(firebaseUser!= null){
+                if(firebaseUser != null){
 
                     Intent i=new Intent(MainActivity.this, FirstActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

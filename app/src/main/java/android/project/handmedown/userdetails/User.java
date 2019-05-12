@@ -2,7 +2,7 @@ package android.project.handmedown.userdetails;
 
 public class User {
 
-   private String Firstname,Lastname,Email,password,lAT,lOG;
+   private String Firstname,Lastname,Email,password,lat,log,city,uid;
    private int Phone;
 
 
@@ -10,21 +10,7 @@ public class User {
 
     }
 
-    public String getlAT() {
-        return lAT;
-    }
 
-    public void setlAT(String lAT) {
-        this.lAT = lAT;
-    }
-
-    public String getlOG() {
-        return lOG;
-    }
-
-    public void setlOG(String lOG) {
-        this.lOG = lOG;
-    }
 
     public int getPhone() {
         return Phone;
@@ -64,5 +50,37 @@ public class User {
 
     public void setFirstname(String firstname) {
         Firstname = firstname;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLog() {
+        return log;
+    }
+
+    public void setLog(String log) {
+        this.log = log;
     }
 }
