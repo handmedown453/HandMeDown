@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/logo_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_tile">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:contentDescription="@string/logo_image_description"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/handmedown_logo" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/input_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/input_layout_landscape"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="12">
+
+                <LinearLayout
+                    android:id="@+id/input_layout_left"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="vertical"
+                    android:layout_weight="6">
+
+                    <EditText
+                        android:id="@+id/text_first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="first_name"
+                        android:ems="10"
+                        android:hint="@string/txt_first_name_hint"
+                        android:inputType="textPersonName"
+                        tools:ignore="UnusedAttribute" />
+
+                    <EditText
+                        android:id="@+id/txt_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:autofillHints="last_name"
+                        android:ems="10"
+                        android:hint="@string/txt_last_name_hint"
+                        android:inputType="textPersonName"
+                        tools:ignore="UnusedAttribute" />
+
+                    <EditText
+                        android:id="@+id/txt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:autofillHints="email"
+                        android:ems="10"
+                        android:hint="@string/txt_email_address_hint"
+                        android:inputType="textEmailAddress"
+                        tools:ignore="UnusedAttribute" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/input_layout_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:ems="10"
+                        android:hint="@string/password_field_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        tools:ignore="UnusedAttribute" />
+
+                    <EditText
+                        android:id="@+id/txt_password_conf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:ems="10"
+                        android:hint="@string/txt_confirm_password_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        tools:ignore="UnusedAttribute" />
+
+                    <Button
+                        android:id="@+id/btn_register"
+                        style="@style/AccentButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/btn_register_text" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+</ScrollView>
