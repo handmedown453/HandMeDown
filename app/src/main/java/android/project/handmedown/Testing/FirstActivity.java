@@ -1,7 +1,9 @@
-package android.project.handmedown;
+package android.project.handmedown.Testing;
 
 import android.content.Intent;
-import android.project.handmedown.Signin.LoginActivity;
+import android.project.handmedown.Map.MapsActivity;
+import android.project.handmedown.R;
+import android.project.handmedown.HomeActivity;
 import android.project.handmedown.userdetails.User;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,14 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirstActivity extends AppCompatActivity {
     TextView t1, t2;
-    Button B1, B2, B3;
+    Button B1, B2;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference reff;
-    private ValueEventListener queryListener;
-    private static final String TAG = "FirstActivity";
 
-    private static final int ERROR_DIALOG_REQUEST = 9001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +65,15 @@ public class FirstActivity extends AppCompatActivity {
         B1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*firebaseAuth.getInstance().signOut();*/
-                Intent i = new Intent(FirstActivity.this, FourthActivity.class);
+                firebaseAuth.getInstance().signOut();
+                Intent i = new Intent(FirstActivity.this, MapsActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
         });
         B2 = findViewById(R.id.button2);
-       init();
+        init();
         }
 
 
@@ -82,7 +82,7 @@ public class FirstActivity extends AppCompatActivity {
         B2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(FirstActivity.this,HomeActivity.class);
+                Intent i = new Intent(FirstActivity.this, HomeActivity.class);
                 i.putExtra("id","1");
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

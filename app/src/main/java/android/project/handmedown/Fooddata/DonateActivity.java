@@ -1,27 +1,30 @@
-package android.project.handmedown;
-
+package android.project.handmedown.Fooddata;
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.project.handmedown.Fooddata.Food_data;
+import android.project.handmedown.HomeActivity;
+import android.project.handmedown.Navigationdrawer.NavigationDrawerActivity;
+import android.project.handmedown.R;
 import android.project.handmedown.userdetails.User;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -37,7 +40,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,18 +55,18 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SecondActivity extends AppCompatActivity {
+public class DonateActivity extends NavigationDrawerActivity {
      EditText Title, Disc;
-    Button b1,b2;
+    Button b1,b2,b3;
     private DatabaseReference reff;
     TextView textView;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     Food_data data;
+    private static final  int MY_PERMISSIONS_REQUEST_READ_STORAGE=100,MY_PERMISSIONS_REQUEST_CAMERA=200;
     ImageView img;
     StorageReference storageReference;
     Uri imguri, uri, photoURI;
@@ -79,12 +81,16 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        /*setContentView(R.layout.activity_donate);*/
+        LayoutInflater inflater = (LayoutInflater) this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_donate, null, false);
+        drawer.addView(contentView, 0);
         storageReference = FirebaseStorage.getInstance().getReference("Images");
-        textView = findViewById(R.id.Donate_gallery_textview);
+        b3 = findViewById(R.id.Donate_gallery_button);
         b1 = findViewById(R.id.Donate_image_button);
         b2 = findViewById(R.id.Donate_Submit_button);
-        img = findViewById(R.id.imageView);
+        img = findViewById(R.id.Donate_image);
         Title = findViewById(R.id.Donate_title_edittext);
         Disc = findViewById(R.id.Donate_discp_edittext);
         mDisplay = (TextView) findViewById(R.id.Donate_time_textview);
@@ -116,7 +122,7 @@ public class SecondActivity extends AppCompatActivity {
                 int minute = cal.get(Calendar.MINUTE);
                 int AP = cal.get(Calendar.AM_PM);
                 TimePickerDialog dialog = new TimePickerDialog(
-                        SecondActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth,
+                        DonateActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_MinWidth,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -140,11 +146,12 @@ public class SecondActivity extends AppCompatActivity {
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        SecondActivity.this,
+                        DonateActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 dialog.show();
             }
         });
@@ -166,13 +173,35 @@ public class SecondActivity extends AppCompatActivity {
                 /* Filechoser();*/
                /* Intent intent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,1);*/
-                dispatchTakePictureIntent();
+                if (ContextCompat.checkSelfPermission(DonateActivity.this,
+                        Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(DonateActivity.this, "please upload image or grant camera permission to this app", Toast.LENGTH_LONG).show();
+                    ActivityCompat.requestPermissions(DonateActivity.this,
+                            new String[]{Manifest.permission.CAMERA},
+                            MY_PERMISSIONS_REQUEST_CAMERA);
+
+                }else{
+                    dispatchTakePictureIntent();
+                }
+
             }
         });
-        textView.setOnClickListener(new View.OnClickListener() {
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Filechoser();
+                if (ContextCompat.checkSelfPermission(DonateActivity.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(DonateActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_REQUEST_READ_STORAGE);
+                }
+                else
+                {
+                    Filechoser();
+
+                }
             }
         });
         reff = FirebaseDatabase.getInstance().getReference("food");
@@ -192,11 +221,17 @@ public class SecondActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Title.getText().toString().isEmpty() || Disc.getText().toString().isEmpty() || mDisplayDate.getText().toString().isEmpty() || mDisplay.getText().toString().isEmpty() || imguri.toString().isEmpty()) {
 
-                if (uploadtask != null && uploadtask.isInProgress()) {
-                    Toast.makeText(SecondActivity.this, "Image upload in progress", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DonateActivity.this, "enter all fileds valid or select image", Toast.LENGTH_LONG).show();
+
+                } else {
+                    if (uploadtask != null && uploadtask.isInProgress()) {
+                        Toast.makeText(DonateActivity.this, "Image upload in progress", Toast.LENGTH_LONG).show();
+                    }
+                    Fileuploader();
+
                 }
-                Fileuploader();
             }
         });
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -213,18 +248,20 @@ public class SecondActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         switch (position){
                             case 0:
+                                days="0";
+                            case 1:
                                 days= "1";
                                 break;
-                            case 1:
+                            case 2:
                                 days= "2";
                                 break;
-                            case 2:
+                            case 3:
                                 days= "3";
                                 break;
-                            case 3:
+                            case 4:
                                 days= "4";
                                 break;
-                            case 4:
+                            case 5:
                                 days= "5";
                                 break;
 
@@ -279,7 +316,7 @@ public class SecondActivity extends AppCompatActivity {
                             data.setBesttime(String.valueOf(days));
                             data.setFilepath(FilePath);
                             reff.child("food").child(String.valueOf(maxid+1)).setValue(data);
-                            Intent i = new Intent(SecondActivity.this, HomeActivity.class);
+                            Intent i = new Intent(DonateActivity.this, HomeActivity.class);
 
                             startActivity(i);
 
@@ -287,7 +324,7 @@ public class SecondActivity extends AppCompatActivity {
                     });
                         // Get a URL to the uploaded content
                        // Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(SecondActivity.this,"Image upload suceesfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(DonateActivity.this,"Image upload suceesfully", Toast.LENGTH_LONG).show();
 
 
 
@@ -367,6 +404,40 @@ public class SecondActivity extends AppCompatActivity {
             }
         }
     }
-    
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
 
+            case MY_PERMISSIONS_REQUEST_READ_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                            Filechoser();
+                } else {
+                    Toast.makeText(DonateActivity.this,"please grant permission for better experience", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+            case MY_PERMISSIONS_REQUEST_CAMERA : {
+                if(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakePictureIntent();
+                } else{
+                    Toast.makeText(DonateActivity.this, "please grant permission for better experience", Toast.LENGTH_LONG).show();
+                }
+                return;
+
+                // other 'case' lines to check for other
+            } // permissions this app might request.
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent setIntent = new Intent(this,HomeActivity.class);
+        startActivity(setIntent);
+        finish();
+    }
 }

@@ -2,7 +2,7 @@ package android.project.handmedown.Splash_Screen;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.project.handmedown.FirstActivity;
+import android.project.handmedown.HomeActivity;
 import android.project.handmedown.R;
 import android.project.handmedown.Signin.LoginActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private static int splash_time_out = 1000;
+    private static int splash_time_out = 4000;
 
 
 
@@ -32,15 +32,16 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser firebaseUser= firebaseAuth.getCurrentUser();
                 if(firebaseUser != null){
 
-                    Intent i=new Intent(MainActivity.this, FirstActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
+                    Intent i=new Intent(MainActivity.this, HomeActivity.class);
 
+                    startActivity(i);
+                    finish();
                 }
                 else
                 {
                     Intent i=new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
+                    finish();
                 }
 
             }

@@ -2,8 +2,8 @@ package android.project.handmedown.userdetails;
 
 public class User {
 
-   private String Firstname,Lastname,Email,password,lat,log,city,uid;
-   private int Phone;
+   private String Firstname,Lastname,Email,password,lat,log,city,uid,Phone;
+
 
 
     public User(){
@@ -12,13 +12,7 @@ public class User {
 
 
 
-    public int getPhone() {
-        return Phone;
-    }
 
-    public void setPhone(int age) {
-        Phone = age;
-    }
 
     public String getPassword() {
         return password;
@@ -82,5 +76,13 @@ public class User {
 
     public void setLog(String log) {
         this.log = log;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 }

@@ -1,11 +1,63 @@
 <resources>
 
     <!-- Base application theme. -->
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AccentButton" parent="@android:style/Widget.Material.Light.Button">
+        <item name="android:background">@drawable/button_bg_rounded_corners</item>
+        <item name="android:textColor">@color/textOnAccent</item>
+    </style>
+
+    <style name="AccentButtonInverted" parent="@android:style/Widget.Material.Light.Button">
+        <item name="android:strokeColor">@color/colorAccent</item>
+        <item name="android:background">#fff</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="AppBar">
+        <item name="android:background">@color/colorAccent</item>
+        <item name="android:textColor">@color/textOnAccent</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+
+    <style name="IconButton" parent="@style/Widget.AppCompat.ImageButton">
+        <item name="android:background">#00FFFF00</item>
+    </style>
+
+    <style name="ListItem">
+        <item name="android:elevation">1dp</item>
+    </style>
+
+    <style name="ListItemLabel" parent="@android:style/Widget.Material.Light.TextView">
+        <item name="android:background">#00000000</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
+
+<style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+<style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

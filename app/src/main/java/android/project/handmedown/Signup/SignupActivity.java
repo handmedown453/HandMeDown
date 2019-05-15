@@ -1,6 +1,9 @@
 package android.project.handmedown.Signup;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.project.handmedown.Map.MapsActivity;
 import android.project.handmedown.Signin.LoginActivity;
 import android.project.handmedown.R;
 import android.project.handmedown.userdetails.User;
@@ -52,6 +55,8 @@ public class SignupActivity extends AppCompatActivity {
         Password = findViewById(R.id.Signup_password_editText);
         ConfirmPassword = findViewById(R.id.Signup_Confirmpassword_editText);
         Signup = findViewById(R.id.Signup_signup_Button);
+        Signup.setEnabled(false);
+        Signup.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         mauth = FirebaseAuth.getInstance();
         checkBox=findViewById(R.id.Singup_Terms_checkbox);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
@@ -61,9 +66,11 @@ public class SignupActivity extends AppCompatActivity {
                 if ( isChecked )
                 {
                     Signup.setEnabled(true);
+                    Signup.getBackground().setColorFilter(null);
 
                 }else{
                     Signup.setEnabled(false);
+                    Signup.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
                 }
 
             }
@@ -115,11 +122,6 @@ public class SignupActivity extends AppCompatActivity {
         s3.setSpan(clickableSpan3, 35, 54, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         T3.setText(s3);
         T3.setMovementMethod(LinkMovementMethod.getInstance());
-
-
-
-
-
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,11 +132,7 @@ public class SignupActivity extends AppCompatActivity {
                 final String phone = Phone.getText().toString();
                 final String password = Password.getText().toString();
                 final String confirmPassword = ConfirmPassword.getText().toString();
-                try {
-                    number = Integer.parseInt(Phone.getText().toString());
-                } catch (NumberFormatException e) {
-                    showMessage(e.toString());
-                }
+
 
 
                 if (firstname.isEmpty() || lastname.isEmpty()  || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
@@ -173,11 +171,11 @@ public class SignupActivity extends AppCompatActivity {
                                 reff = FirebaseDatabase.getInstance().getReference(mauth.getUid());
                                 user.setFirstname(Firstname.getText().toString());
                                 user.setLastname(Lastname.getText().toString());
-                                user.setPhone(number);
+                                user.setPhone(Phone.getText().toString());
                                 user.setEmail(Email.getText().toString());
                                 user.setPassword(Password.getText().toString());
                                 reff.setValue(user);
-                                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
+                                Intent i = new Intent(SignupActivity.this, MapsActivity.class);
                                 startActivity(i);
                             } else {
                                 showMessage(task.getException().getMessage());

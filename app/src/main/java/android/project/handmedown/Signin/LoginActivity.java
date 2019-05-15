@@ -1,7 +1,7 @@
 package android.project.handmedown.Signin;
 
 import android.content.Intent;
-import android.project.handmedown.FirstActivity;
+import android.project.handmedown.HomeActivity;
 import android.project.handmedown.R;
 import android.project.handmedown.Signup.SignupActivity;
 import android.support.annotation.NonNull;
@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText userid, password;
-    private Button Login;
+    private Button Login,signup;
     private FirebaseAuth mauth;
     public int counter = 3, flag = 0;
 
@@ -37,24 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.Login_password_editText);
         Login = findViewById(R.id.Login_login_button);
         mauth = FirebaseAuth.getInstance();
-        TextView textview = findViewById(R.id.Login_signuplink_textview);
-        String text = "Not a Member yet? Signup now";
-
-        SpannableString ss = new SpannableString(text);
-
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
+        signup= findViewById(R.id.Login_signuplink_button);
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View V) {
+            public void onClick(View v) {
                 Intent i = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(i);
             }
-        };
-
-        ss.setSpan(clickableSpan1, 17, 25, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textview.setText(ss);
-        textview.setMovementMethod(LinkMovementMethod.getInstance());
-
-
+        });
         TextView textview2 = findViewById(R.id.Login_forget_textview);
         String text1 = "Forget password?";
 
@@ -89,16 +79,14 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                                         if (task.isSuccessful()) {
-                                           Intent i = new Intent(LoginActivity.this, FirstActivity.class);
+                                           Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                                             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                              startActivity(i);
 
 
 
                                         } else {
-
-
-
+                                                    showMessage("enter Correct email and password");
                                         }
 
                                     }

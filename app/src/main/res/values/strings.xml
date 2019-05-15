@@ -31,10 +31,75 @@ AIzaSyDWbtJiMLCwwVc5nqDmiK7_prACoJbD-VA
     <string name="select_location">Select Location</string>
 
     <string-array name="days">
+        <item>Select best days for food</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
     </string-array>
+
+
+    <!---nicholis-->
+
+    <string name="logo_image_description">HandMeDown logo image</string>
+    <string name="email_field_hint">Email</string>
+    <string name="password_field_hint">Password</string>
+    <string name="btn_forgot_password_text">Forgot Password?</string>
+    <string name="btn_login_text">Login</string>
+    <string name="text_no_account">Don\'t have an account?</string>
+    <string name="btn_register_text">Register here </string>
+    <string name="txt_first_name_hint">First Name</string>
+    <string name="txt_last_name_hint">Last Name</string>
+    <string name="txt_email_address_hint">Email address</string>
+    <string name="txt_confirm_password_hint">Confirm Password</string>
+    <string name="password_reset_instructions">Enter your email address. We will send a link to reset your password.</string>
+    <string name="btn_send_text">Send</string>
+    <string name="btn_set_home_text">Set Home Location</string>
+    <string name="btn_choose_location_text">Choose your location</string>
+    <string name="btn_home_description">Home button</string>
+    <string name="btn_profile_description">Profile button</string>
+    <string name="list_item_image_description">List item preview image</string>
+    <string name="title_field_hint">Title</string>
+    <string name="description_field_hint">Description</string>
+    <string name="pickup_time_field_hint">Pick up times</string>
+    <string name="list_duration_field_hint">List for</string>
+    <string name="pickup_location_field_hint">Set pickup location</string>
+    <string name="btn_submit_text">Submit</string>
+    <string name="listing_image_preview_description">Listing image preview</string>
+    <string name="activity_add_listing_title">Add listing</string>
+    <string name="activity_donation_requests_title">Donation Requests</string>
+    <string name="btn_accept_text"> Accept </string>
+    <string name="btn_reject_text">  Reject  </string>
+    <string name="txt_placeholder">Loading</string>
+    <string name="donation_user_name_placeholder">Offered by</string>
+    <string name="donation_distance_placeholder">0m</string>
+    <string name="placeholder_loading">Loading</string>
+    <string name="btn_request_listing_text">Request Listing</string>
+
+    <!--Mounil-->
+    <string name="your_listing">Your Listing</string>
+    <string name="faqs">FAQ\'s</string>
+    <string name="termsandconditions">Terms &amp; Conditions</string>
+    <string name="feedback">Feedback</string>
+    <string name="aboutus">About Us</string>
+    <string name="signout">Sign Out?</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_navigation_bar">NavigationBarActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Mounil Shah</string>
+    <string name="nav_header_subtitle">mounil3196@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="view_donations">View Donations</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

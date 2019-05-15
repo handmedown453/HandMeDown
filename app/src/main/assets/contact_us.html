@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		document.getElementsByTagName("html")[0].className += " js";
+	</script>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>HandMeDown</title>
+</head>
+
+<body>
+	<header class="cd-header flex flex--column flex--center">
+		<div class="text-component text--center">
+			<img src="header.jpeg" alt=" HandMeDown Header Icon" height="160">
+		</div>
+	</header>
+
+	<section class="cd-faq js-cd-faq container container--md margin-top--lg margin-bottom--lg">
+		<ul class="cd-faq__categories">
+			<li><a class="cd-faq__category cd-faq__category-selected truncate" href="#contact">Contact Us</a></li>
+		</ul>
+
+		<div class="cd-faq__items">
+			<ul id="contact" class="cd-faq__group">
+				<li class="cd-faq__title">
+					<h2>Contact Us</h2>
+				<li class="cd-faq__item">
+					<a class="cd-faq__trigger" href="#0"><span>How can I contact you?</span></a>
+					<div class="cd-faq__content">
+						<div class="text-component">
+							<p>If you have any general questions, app issues, or press enquires, please
+								email <a
+									href="mailto:handmedown453@gmail.com"><u>HandMeDown453@gmail.com</u></a>.
+							</p>
+						</div>
+					</div>
+				</li>
+
+				<li class="cd-faq__item">
+					<a class="cd-faq__trigger" href="#0"><span>How can I find you on social media?</span></a>
+					<div class="cd-faq__content">
+						<div class="text-component">
+							<p>You can find us here: Facebook, Twitter, Instagram, Pinterest.</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			</ul>
+		</div>
+		<a href="#0" class="cd-faq__close-panel text--replace">Close</a>
+
+		<div class="cd-faq__overlay" aria-hidden="true"></div>
+	</section>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>
