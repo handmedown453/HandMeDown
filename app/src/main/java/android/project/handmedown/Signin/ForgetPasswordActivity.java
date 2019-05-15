@@ -17,69 +17,94 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Activity to handle password reset flow.
+ */
 public class ForgetPasswordActivity extends AppCompatActivity {
     private EditText Email;
-    boolean a;
     private FirebaseAuth mauth;
     private Button resetpassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // initialize UI layout
         setContentView(R.layout.activity_forget_password);
 
-        resetpassword=findViewById(R.id.ForgetPassword_reset_button);
-        mauth = FirebaseAuth.getInstance();
+        // get reference to inputs
+        resetpassword = findViewById(R.id.ForgetPassword_reset_button);
         Email = findViewById(R.id.ForgetPassword_email_edittext);
 
+        // get instance to Firebase authentication service
+        mauth = FirebaseAuth.getInstance();
 
+        // set click handler for resetpassword button
+        resetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // get email input value
+                final String email = Email.getText().toString();
 
+                // if email was not entered
+                if (email.isEmpty()) {
+                    // show error message
+                    showMessage("please enter  valid email id");
 
-            resetpassword.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final String email = Email.getText().toString();
-                    if (email.isEmpty()) {
-                        showMessage("please enter  valid email id");
-                    } else if (a == isEmailValid(email)) {
-                        showMessage("please enter  valid email id");
-                    } else {
-                        mauth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    showMessage("Check your email for instructions");
-                                    Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
-                                    startActivity(i);
-                                } else {
-                                    showMessage(task.getException().getMessage());
-                                }
+                    // else if email input is not valid email format
+                } else if (!isEmailValid(email)) {
+                    // show error message
+                    showMessage("please enter  valid email id");
+
+                } else { // else, email is valid
+                    // user Firebase authentication service to send password reset email
+                    mauth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // if password reset email was sent successfully
+                            if (task.isSuccessful()) {
+                                // show success message
+                                showMessage("Check your email for instructions");
+                                // switch back to signin activity
+                                Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
+                                startActivity(i);
+
+                            } else { // else, password reset email was not sent
+                                // show error message
+                                showMessage(task.getException().getMessage());
                             }
-                        });
-                    }
+                        }
+                    });
                 }
-            });
-
-
-
-
+            }
+        });
     }
 
+    /**
+     * Convenience method.
+     *
+     * Wrapper around {@link Toast#makeText} with default values and provided message.
+     *
+     * @param message the message to show in the toast.
+     */
     private void showMessage(String message) {
-
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
+
+    /**
+     * Checks if the provided string is an acceptable email address.
+     *
+     * @param email the string to check for email address format
+     * @return whether the given string adheres to acceptable email address format
+     */
     public boolean isEmailValid(String email) {
-        String regExpn =
-                "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
+        // email regex definition
+        String regExpn = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b";
 
-        CharSequence inputStr = email;
-
+        // user a Matcher to check if the provided string matches the email regex
         Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
+        Matcher matcher = pattern.matcher(email);
 
-        if (matcher.matches())
-            return true;
-        else
-            return false;
+        // return result of match
+        return matcher.matches();
     }
 }

@@ -40,6 +40,9 @@ import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Activity for
+ */
 public class SecondActivity extends AppCompatActivity {
      EditText Title, Disc;
     Button b1,b2;

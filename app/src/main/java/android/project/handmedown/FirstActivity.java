@@ -18,7 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
+/**
+ * The first activity that is run when a user signs in.
+ */
 public class FirstActivity extends AppCompatActivity {
     TextView t1, t2;
     Button B1, B2, B3;
@@ -33,25 +35,34 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // initialize ui layout
         setContentView(R.layout.activity_first);
+
+        // get references to input views
         t1 = findViewById(R.id.textView);
         t2 = findViewById(R.id.textView2);
+
+        // get references to Firebase services
         firebaseAuth = firebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+        // get reference to current Firebase user
         reff = FirebaseDatabase.getInstance().getReference(firebaseAuth.getUid());
 
-
+        // add listener to detect changes in user details
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // get User object from DataSnapshot
                 User user1 = dataSnapshot.getValue(User.class);
-                if(user1.getEmail()!=null) {
+
+                // if email is not null
+                if (user1.getEmail() != null) {
+                    // update UI views with email and first name
                     t1.setText(user1.getEmail());
                     t2.setText(user1.getFirstname());
-                }
-                else{
-                   // start login screen
+                } else {
+                    // start login screen
                 }
             }
 
@@ -61,34 +72,32 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // initialize/configure logout button
         B1 = findViewById(R.id.button1);
         B1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Firebase sign out
                 firebaseAuth.getInstance().signOut();
+                // switch to login activity
                 Intent i = new Intent(FirstActivity.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
         });
+
+        // initialize button2
         B2 = findViewById(R.id.button2);
-       init();
-        }
-
-
-    private void init(){
-
         B2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // switch to MapsActivity
                 Intent i = new Intent(FirstActivity.this, MapsActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
-
             }
         });
     }
-
 }
