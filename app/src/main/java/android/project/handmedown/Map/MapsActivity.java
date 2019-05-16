@@ -30,6 +30,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -146,7 +147,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mCenterMarker.remove();
                 }
                 My_location = new LatLng(lat1, log1);
-                mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).title("my location").draggable(true));
+                mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin1)).title("my location").draggable(true));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(My_location));
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
                 Toast.makeText(MapsActivity.this, "" + place.getName(), Toast.LENGTH_SHORT).show();
@@ -195,7 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Location currentLocation = (Location) task.getResult();
 
                             My_location = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-                            mCenterMarker = mMap.addMarker(new MarkerOptions().position(My_location).title("my location").draggable(true));
+                            mCenterMarker = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin1)).position(My_location).title("my location").draggable(true));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(My_location));
                             mMap.animateCamera(CameraUpdateFactory.zoomTo(13.0f));
                             lat = String.valueOf(currentLocation.getLatitude());
@@ -242,7 +243,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mCenterMarker.remove();
         }
         CameraPosition test = mMap.getCameraPosition();
-        mCenterMarker = mMap.addMarker(new MarkerOptions().position(mMap.getCameraPosition().target).anchor(0.5f, .05f).title("Test"));
+        mCenterMarker = mMap.addMarker(new MarkerOptions().position(mMap.getCameraPosition().target).icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin1)).anchor(0.5f, .05f).title("Test"));
         Log.d(TAG, "Map Coordinate: " + String.valueOf(test));
     }
 
